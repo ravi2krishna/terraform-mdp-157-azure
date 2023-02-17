@@ -37,3 +37,8 @@ resource "azurerm_network_security_group" "ecomm-nsg" {
     environment = "dev"
   }
 }
+
+resource "azurerm_subnet_network_security_group_association" "ecomm-nsg-asc" {
+  subnet_id                 = azurerm_subnet.ecomm-subnet.id
+  network_security_group_id = azurerm_network_security_group.ecomm-nsg.id
+}
