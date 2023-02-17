@@ -42,3 +42,14 @@ resource "azurerm_subnet_network_security_group_association" "ecomm-nsg-asc" {
   subnet_id                 = azurerm_subnet.ecomm-subnet.id
   network_security_group_id = azurerm_network_security_group.ecomm-nsg.id
 }
+
+resource "azurerm_public_ip" "ecomm-pip" {
+  name                = "ecomm"
+  resource_group_name = azurerm_resource_group.ecomm-rg.name
+  location            = azurerm_resource_group.ecomm-rg.location
+  allocation_method   = "Dynamic"
+
+  tags = {
+    environment = "dev"
+  }
+}
